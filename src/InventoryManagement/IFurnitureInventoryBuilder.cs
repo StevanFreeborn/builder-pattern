@@ -2,9 +2,9 @@ namespace InventoryManagement;
 
 interface IFurnitureInventoryBuilder
 {
-  void AddTitle();
-  void AddDimensions();
-  void AddLogistics(DateTime date);
+  IFurnitureInventoryBuilder AddTitle();
+  IFurnitureInventoryBuilder AddDimensions();
+  IFurnitureInventoryBuilder AddLogistics(DateTime date);
 
   // In traditional implementation each concrete
   // builder would have a method to return its built

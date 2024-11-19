@@ -12,3 +12,11 @@ var director = new InventoryBuildDirector(builder);
 
 director.BuildCompleteReport();
 Console.WriteLine(builder.GetDailyReport().Debug());
+
+var fluentReport = new DailyReportBuilder(items)
+  .AddTitle()
+  .AddDimensions()
+  .AddLogistics(DateTime.Now)
+  .GetDailyReport();
+
+Console.WriteLine(fluentReport.Debug());

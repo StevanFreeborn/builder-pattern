@@ -7,12 +7,13 @@ class DailyReportBuilder(IEnumerable<FurnitureItem> items) : IFurnitureInventory
 
   public void Reset() => _report = new();
 
-  public void AddTitle()
+  public IFurnitureInventoryBuilder AddTitle()
   {
     _report.TitleSection = "------ Daily Inventory Report ------\n\n";
+    return this;
   }
 
-  public void AddDimensions()
+  public IFurnitureInventoryBuilder AddDimensions()
   {
     _report.DimensionsSection = string.Join("\n", _items.Select(item =>
       $"Product: {item.Name}\n" +
@@ -20,11 +21,14 @@ class DailyReportBuilder(IEnumerable<FurnitureItem> items) : IFurnitureInventory
       $"Dimensions: {item.Width} x {item.Height} in\n" +
       $"Weight: {item.Weight} lbs\n\n"
     ));
+
+    return this;
   }
 
-  public void AddLogistics(DateTime date)
+  public IFurnitureInventoryBuilder AddLogistics(DateTime date)
   {
     _report.LogisticsSection = $"Report generated on {date}\n";
+    return this;
   }
 
   public InventoryReport GetDailyReport()
